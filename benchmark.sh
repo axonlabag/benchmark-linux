@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /tmp
+cd /var
 export LANG=C
 apt-get update > /dev/null
 apt-get install -y sysbench > /dev/null
