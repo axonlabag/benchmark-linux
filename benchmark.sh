@@ -3,7 +3,7 @@ cd /var
 export LANG=C
 apt-get update > /dev/null
 apt-get install -y sysbench > /dev/null
-gb=10  # how much diskspace is needed (in GiB) - set this to 1 if you do not have enough space
+gb=1  # how much diskspace is needed (in GiB) - set this to 1 if you do not have enough space
 echo -n "# Hostname "
 hostname -f 
 echo "## Specs"
@@ -16,7 +16,7 @@ echo "## CPU benchmark (single thread)"
 sysbench --num-threads=1 cpu --cpu-max-prime=20000 --time=0 --events=10000 run|grep --color=never "total time:"|sed "s/.*total time:\\s*\(.*\)s/\1/" | awk '{ print 321238 / $1 " operations / second"}'
 echo "## Memory benchmark"
 sysbench --num-threads=1 memory --memory-block-size=1M --memory-total-size=100G run | grep --color=never transferred
-# Repare RW bench
+# Pepare RW bench
 sysbench fileio --file-total-size=${gb}G --file-num=1024 prepare > /dev/null
 ulimit -n 65000
 echo "## Disk random read write benchmark"
